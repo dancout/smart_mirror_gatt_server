@@ -26,6 +26,9 @@ class wifi_cfg_state(Characteristic):
     """
     This class defines the WiFi Configurator State Characteristic.
     """
+
+# ==================================== INIT DECLARATIONS ==========================
+
     WIFI_CFG_STATE_UUID = "00000001-b070-45da-ae51-9bd02af63ff1"
 
     def __init__(self, service):
@@ -111,6 +114,9 @@ class wifi_cfg_ssid(Characteristic):
     """
     This class defines the WiFi Configurator SSID Characteristic.
     """
+
+ # ==================================== INIT DECLARATIONS ==========================
+
     WIFI_CFG_SSID_UUID = "00000002-b070-45da-ae51-9bd02af63ff1"
 
     def __init__(self, service):
@@ -145,6 +151,9 @@ class wifi_cfg_pswd(Characteristic):
     """
     This class defines the WiFi Configurator Password Characteristic.
     """
+
+# ==================================== INIT DECLARATIONS ==========================
+
     WIFI_CFG_PSWD_UUID = "00000003-b070-45da-ae51-9bd02af63ff1"
 
     def __init__(self, service):
@@ -180,6 +189,9 @@ class wifi_cfg_sec(Characteristic):
     """
     This class defines the WiFi Configurator Security Mode Characteristic.
     """
+
+# ==================================== INIT DECLARATIONS ==========================
+
     WIFI_CFG_SEC_UUID = "00000004-b070-45da-ae51-9bd02af63ff1"
 
     def __init__(self, service):
