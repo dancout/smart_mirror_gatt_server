@@ -50,33 +50,39 @@ class wifi_cfg_state(Characteristic):
         print('WiFI Configurator State Value received: ',
               (str(value)), flush=True)
 
-        # TODO: Note: We deleted the "".join(map(chr, value)) code here, because it seemed excessive.
-        #             It's possible it may be needed, only time will tell.
-        self.service.set_wifi_config_state(value)
+        # Wrap this action in a try/except block in the case of an unexpected issue
+        try:
+            # decode the incoming value
+            val = "".join(map(chr, value))
+            print('Decoded State Value received: ', val, flush=True)
+            # Set the internal wifi_config_state with the decoded val
+            self.service.set_wifi_config_state(val)
+        except Exception as e:
+            print('There was an issue:', flush=True)
+            print(str(e), flush=True)
 
         # Now that we are writing a new value to the WiFi Configurator State, we should notify any
         # listeners that a change has taken place!
-        # TODO: Test that StartNotify works as expected.
-        self.service.get_characteristics()[0].StartNotify()
+        notifyValue = self.service.get_characteristics()[0].StartNotify()
 
-    # TODO: I don't know if I even need this function. The intention originally with get_weather() was to
-    #       gather all the info related to the weather (degrees, city, etc).
-    #
-    #       Now, we aren't gathering data off the raspberry pi. The only change we want to implement is
-    #       updating the wifi connection. So maybe here we could instead grab what the current state of the
-    #       WiFi Configurator is?
+        # Return the encoded value found from StartNotify()
+        return notifyValue
 
     def get_wifi_cfg(self):
+        # Define an empty list to store our decoded data value(s)
         value = []
 
+        # Grab the state value from the internal storage
         state = self.service.get_wifi_cfg_state()
 
-        data = 'S=%s' % (state)
-        print('Sending: ', data, flush=True)
+        # Print the current state we are sending out
+        print('Sending State Value: ', state, flush=True)
 
-        for c in data:
+        # Encode the data to be transferred via BLE
+        for c in str(state):
             value.append(dbus.Byte(c.encode()))
 
+        # Return the encoded data value
         return value
 
     def set_state_callback(self):
@@ -97,13 +103,17 @@ class wifi_cfg_state(Characteristic):
         self.PropertiesChanged(GATT_CHRC_IFACE, {"Value": value}, [])
         self.add_timeout(NOTIFY_TIMEOUT, self.set_state_callback)
 
+        # Return the encoded value generated from get_wifi_cfg()
+        return value
+
     def StopNotify(self):
+        print('Stop notify WiFi Configurator Service', flush=True)
         self.notifying = False
 
     def ReadValue(self, options):
-        value = self.get_wifi_cfg()
-
-        return value
+        print('State value Read Requested', flush=True)
+        # Return the encoded wifi config state value
+        return self.get_wifi_cfg()
 
 
 # =================================================================================

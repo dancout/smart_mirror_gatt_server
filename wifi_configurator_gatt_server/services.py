@@ -25,7 +25,9 @@ class WiFiConfiguratorService(Service):
     WIFI_CONFIG_SVC_UUID = "00000000-b070-45da-ae51-9bd02af63ff1"
 
     def __init__(self, index):
+        # Set a default security mode and wifi config state
         self.security_mode = 2  # WPA2 (default)
+        self.wifi_cfg_state = 0  # IDLE (default)
         Service.__init__(self, index, self.WIFI_CONFIG_SVC_UUID, True)
         self.add_characteristic(wifi_cfg_state(self))
         self.add_characteristic(wifi_cfg_ssid(self))
