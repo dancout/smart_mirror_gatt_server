@@ -144,9 +144,12 @@ class wifi_cfg_ssid(Characteristic):
         # TODO: Should we be printing this publicly?
         print('WiFI Configurator SSID Value received: ', (str(value)), flush=True)
 
-        # TODO: Note: We deleted the "".join(map(chr, value)) code here, because it seemed excessive.
-        #             It's possible it may be needed, only time will tell.
-        self.service.set_wifi_config_ssid(value)
+        # decode the incoming value
+        val = "".join(map(chr, value))
+        # TODO: Should we be printing this publicly?
+        print('Decoded SSID Value received: ', val, flush=True)
+        # Set the internal wifi_config_ssid with the decoded val
+        self.service.set_wifi_config_ssid(val)
 
         # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
         #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
@@ -182,9 +185,12 @@ class wifi_cfg_pswd(Characteristic):
         print('WiFI Configurator Password Value received: ',
               (str(value)), flush=True)
 
-        # TODO: Note: We deleted the "".join(map(chr, value)) code here, because it seemed excessive.
-        #             It's possible it may be needed, only time will tell.
-        self.service.set_wifi_config_pswd(value)
+        # decode the incoming value
+        val = "".join(map(chr, value))
+        # TODO: Should we be printing this publicly?
+        print('Decoded Password Value received: ', val, flush=True)
+        # Set the internal wifi_config_pswd with the decoded val
+        self.service.set_wifi_config_pswd(val)
 
         # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
         #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
@@ -220,9 +226,12 @@ class wifi_cfg_sec(Characteristic):
         print('WiFI Configurator Security Mode Value received: ',
               (str(value)), flush=True)
 
-        # TODO: Note: We deleted the "".join(map(chr, value)) code here, because it seemed excessive.
-        #             It's possible it may be needed, only time will tell.
-        self.service.set_wifi_config_sec(value)
+        # decode the incoming value
+        val = "".join(map(chr, value))
+        # TODO: Should we be printing this publicly?
+        print('Decoded Security Mode Value received: ', val, flush=True)
+        # Set the internal wifi_config_pswd with the decoded val
+        self.service.set_wifi_config_sec(val)
 
         # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
         #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
