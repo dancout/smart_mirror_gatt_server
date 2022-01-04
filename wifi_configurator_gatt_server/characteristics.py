@@ -151,10 +151,6 @@ class wifi_cfg_ssid(Characteristic):
         # Set the internal wifi_config_ssid with the decoded val
         self.service.set_wifi_config_ssid(val)
 
-        # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
-        #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
-        # self.service.get_characteristics()[0].StartNotify()
-
 
 # =================================================================================
 # ==================================== WIFI CONFIGURATOR PASSWORD CHARACTERISTIC ==
@@ -192,9 +188,6 @@ class wifi_cfg_pswd(Characteristic):
         # Set the internal wifi_config_pswd with the decoded val
         self.service.set_wifi_config_pswd(val)
 
-        # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
-        #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
-        # self.service.get_characteristics()[0].StartNotify()
 
 
 # =================================================================================
@@ -233,6 +226,3 @@ class wifi_cfg_sec(Characteristic):
         # Set the internal wifi_config_pswd with the decoded val
         self.service.set_wifi_config_sec(val)
 
-        # TODO: I believe that we should NOT be triggering a notify from this stage, as that will be handled
-        #       when the state is set to "SAVING" (1) from the WIFI_CFG_STATE Characteristic.
-        # self.service.get_characteristics()[0].StartNotify()
