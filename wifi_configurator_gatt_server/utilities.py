@@ -7,6 +7,9 @@ import os
 # Represents the path to the wpa_supplicant.conf file
 wpa_file_path = "/etc/wpa_supplicant/wpa_supplicant.conf"
 
+# Represents the path to the state.txt file
+state_file_path = "/home/pi/Documents/state.txt"
+
 
 # ======================================= Class Functions =====================================================================
 
@@ -44,6 +47,28 @@ network={{
 
     # After editing, we should change the file back to read-only
     os.system(f"sudo chmod 444 {wpa_file_path}")
+
+
+def update_state_file(state):
+    """
+    This function will write the incoming [state] to the proper state.txt
+    file, located in the Documents folder. This represents the last set
+    state of the Configurator. It will be used to retain state when the pi
+    must restart to connect to WiFi, whereas any internal app state would
+    be lost.
+    """
+    # Open the state.txt file in "Overwrite" mode
+    f = open(state_file_path, "w")
+
+    # Overwrite the contents of the file with our new state
+    f.write(f"""{state}
+    """)
+
+    # Close the file
+    f.close()
+
+    # Print a success message.
+    print(f"state saved to {state_file_path}")
 
 
 def connected_to_internet():
