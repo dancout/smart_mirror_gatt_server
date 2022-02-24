@@ -117,3 +117,16 @@ def get_state_from_file():
 
     # Return the current state
     return state
+
+
+def check_if_joining():
+    """
+    This function will return true if the state found is "JOINING",
+    (numerically this is "4"). Otherwise, it will return false.
+
+    """
+    # Get the current state
+    state = get_state_from_file()
+
+    # Return whether this state was "4" (meaning "JOINING" state) or not
+    return state == "4"
