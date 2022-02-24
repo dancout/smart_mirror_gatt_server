@@ -95,3 +95,25 @@ def connected_to_internet():
     else:
         print("Not connected to internet.")
         return False
+
+
+def get_state_from_file():
+    """
+    This function will return the state value listed from the file
+    located at the variable [state_file_path].
+    """
+
+    # Set a default value of "IDLE" for state. This will be returned
+    # if the state file does not yet exist.
+    state = "0"
+
+    # Check if the state file exists
+    if os.path.exists(state_file_path):
+        # Open the state.txt file in "Read" mode
+        f = open(state_file_path)
+
+        # Grab the first character found in this file
+        state = f.read(1)
+
+    # Return the current state
+    return state
