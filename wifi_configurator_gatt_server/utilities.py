@@ -130,3 +130,23 @@ def check_if_joining():
 
     # Return whether this state was "4" (meaning "JOINING" state) or not
     return state == "4"
+
+
+def join_network():
+    """
+    This function will first check if the current state is "JOINING". If
+    so, it will then update the current state to "JOINED" or "ERROR"
+    based on if the device is currently connected to the internet.
+    """
+    # Check if the pi is currently trying to join the WiFI Network
+    if check_if_joining():
+        # Check if the newly written WiFi Configuration was successful
+        if connected_to_internet():
+            # Set the wifi state to "JOINED"
+            update_state_file("6")
+              
+        # Otherwise, we are not connected to the internet
+        else:
+            # Set the wifi state to "ERROR"
+            update_state_file("7")
+            
