@@ -2,7 +2,7 @@ import os
 from ble_gatt_server.service import Service
 from wifi_configurator_gatt_server.characteristics import (
     wifi_cfg_pswd, wifi_cfg_sec, wifi_cfg_ssid, wifi_cfg_state,)
-from wifi_configurator_gatt_server.utilities import update_wpa_file, update_state_file, get_state_from_file
+from wifi_configurator_gatt_server.utilities import update_state_file, get_state_from_file
 
 # This file houses the Service Declarations for the BLE GATT Server.
 
@@ -53,15 +53,12 @@ class WiFiConfiguratorService(Service):
 # ==================================== STATE ======================================
 
     def get_wifi_cfg_state(self):
-        return self.wifi_cfg_state
+        return get_state_from_file()
 
     def set_wifi_config_state(self, state):
         """
         This function will set the WiFi Configuration state to the incoming [state]
-        value. It will then update the state.txt file with this value. Finally, if
-        the state was set to the "JOIN" status, it will update the wpa_supplicant.conf
-        file with the current ssid & pswd, set the WiFi Configurator state to
-        "JOINING", and then reboot the device.
+        value. It will then update the state.txt file with this value.
         """
         # Set the incoming state on this Service object        
         self.wifi_cfg_state = state
@@ -69,16 +66,6 @@ class WiFiConfiguratorService(Service):
         # Set the incoming state within the state.txt file
         update_state_file(state)
 
-        # Check if state was "JOIN"
-        if state == self.JOIN_STATE:
-            # Update the wpa_supplicants.conf file with the current ssid & pswd
-            update_wpa_file(self.get_wifi_config_ssid(), self.get_wifi_cfg_pswd())
-
-            # Next, we'll need to set state to "JOINING"
-            self.set_wifi_config_state(self.JOINING_STATE)
-
-            # Then restart to apply the new WiFi Configuration
-            os.system("sudo reboot")
 
 # ==================================== SSID =======================================
 

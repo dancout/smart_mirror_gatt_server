@@ -1,8 +1,10 @@
 import dbus
+import os
 
 from ble_gatt_server.service import Characteristic
 from wifi_configurator_gatt_server.descriptors import (
     wifi_cfg_pswd_Descriptor, wifi_cfg_sec_Descriptor, wifi_cfg_ssid_Descriptor, wifi_cfg_state_Descriptor,)
+from wifi_configurator_gatt_server.utilities import update_wpa_file
 
 # ==================================== GLOBAL DECLARATIONS ========================
 
@@ -30,6 +32,15 @@ class wifi_cfg_state(Characteristic):
 # ==================================== INIT DECLARATIONS ==========================
 
     WIFI_CFG_STATE_UUID = "00000001-b070-45da-ae51-9bd02af63ff1"
+
+    # This represents the state where we need to begin joining to the WiFi.
+    # This state will be set from the controller, and this GATT Server will be expected
+    # to attempt to join the WiFi Network.
+    JOIN_STATE = "3"
+
+    # This represents the state signaling that it is time to attempt to join the WiFi
+    # Network. This state will be set just before restarting the GATT Server.
+    JOINING_STATE = "4"
 
     def __init__(self, service):
 
@@ -86,9 +97,38 @@ class wifi_cfg_state(Characteristic):
         return value
 
     def set_state_callback(self):
+        """
+        This function represents what is to be called on each set state
+        callback. If notifying, it wll check if the state was set to the
+        "JOIN" status, it will update the wpa_supplicant.conf file with
+        the current ssid & pswd, set the WiFi Configurator state to
+        "JOINING", and finally reboot the device.
+        """
         if self.notifying:
             value = self.get_wifi_cfg()
             self.PropertiesChanged(GATT_CHRC_IFACE, {"Value": value}, [])
+
+            # Grab the state value from the internal storage
+            state = self.service.get_wifi_cfg_state()
+
+            # Next, we need to check if we are attempting to join the
+            # WiFi Network. We are doing so in this callback function
+            # because we need this code to be run separately from any
+            # state setter function. The mobile controller is expecting
+            # the setter function to return a success value, and if we
+            # reboot this device then the success value is never sent
+            # out.
+
+            # Check if state was "JOIN"
+            if state == self.JOIN_STATE:
+                # Update the wpa_supplicants.conf file with the current ssid & pswd
+                update_wpa_file(self.service.get_wifi_config_ssid(), self.service.get_wifi_cfg_pswd())
+
+                # Next, we'll need to set state to "JOINING"
+                self.service.set_wifi_config_state(self.JOINING_STATE)
+
+                # Then restart to apply the new WiFi Configuration
+                os.system("sudo reboot")
 
         return self.notifying
 
