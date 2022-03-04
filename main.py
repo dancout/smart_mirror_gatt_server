@@ -1,6 +1,7 @@
 # imports
 from wifi_configurator_gatt_server.ble_app import BleApplication, SmartMirrorDisplayAdvertisement
 from wifi_configurator_gatt_server.services import WiFiConfiguratorService
+from wifi_configurator_gatt_server.utilities import join_network
 
 
 # =================================================================================
@@ -33,6 +34,9 @@ try:
     print('GATT application running')
     # TODO: IP Address might be nice to have, but not necessary for Proof of Concept.
     # fetchIpAddress()
+
+    # Check if there is work to be done in order to join the WiFi Network
+    join_network()
 
     # Run the application
     ble_app.run()
