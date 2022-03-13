@@ -28,5 +28,5 @@ class SmartMirrorDisplayAdvertisement(Advertisement):
 
     def __init__(self, index):
         Advertisement.__init__(self, index, "peripheral")
-        self.add_local_name("IMP - SmartMirrorDisplay")
+        self.add_local_name("IMP - RaspberyPiDisplay")
         self.include_tx_power = True
