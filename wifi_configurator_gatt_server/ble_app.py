@@ -1,6 +1,7 @@
 from ble_gatt_server.advertisement import Advertisement
 from ble_gatt_server.service import Application
 
+import os
 
 # This function houses the code for declaring the base BLE Application GAT Server.
 
@@ -28,5 +29,8 @@ class SmartMirrorDisplayAdvertisement(Advertisement):
 
     def __init__(self, index):
         Advertisement.__init__(self, index, "peripheral")
-        self.add_local_name("IMP - RaspberyPiDisplay")
+        # Get the DISPLAY_DEVICE_NAME from the environment variables
+        DISPLAY_DEVICE_NAME = os.getenv('DISPLAY_DEVICE_NAME')
+        # Declare this BLE Device name
+        self.add_local_name(f"IMP - {DISPLAY_DEVICE_NAME}")
         self.include_tx_power = True

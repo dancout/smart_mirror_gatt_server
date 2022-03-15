@@ -14,7 +14,7 @@ SUB='True'
 if [[ "$STR" == *"$SUB"* ]];
 then
 #   Connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --start-fullscreen https://smart-mirror-controller.web.app/\#/display-page/RaspberryPiDisplay
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --start-fullscreen https://smart-mirror-13618.web.app/\#/display-page/$DISPLAY_DEVICE_NAME
 
 else
 #   Not connected to the internet
