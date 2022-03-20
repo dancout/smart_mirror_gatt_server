@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Run the gatt server application
+sudo python3 /home/pi/Documents/Projects/smart_mirror_gatt_server/main.py &
+
 ### Use unclutter to hide the mouse
 unclutter -idle 0.5 -root &
 ### Use xdotool to simulate keyboard events
