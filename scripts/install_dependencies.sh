@@ -26,7 +26,7 @@ echo "# Set the current xsession not to blank out the screensaver and then disab
 @xset -dpms
 
 # calls the script to open chrome to the correct address and run our gett server
-@bash /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/get_connected_to_internet_bash.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
+@bash /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/run_smart_mirror_display.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 # Make the autostart file read-only
 sudo chmod 444 /etc/xdg/lxsession/LXDE-pi/autostart
