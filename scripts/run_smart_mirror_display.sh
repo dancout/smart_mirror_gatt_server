@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# TODO: May need to potentially sleep here so that the pi has a chance to "catch up" and realize
+#       that it is actually connected to WiFi. We sometimes experience the case where the pi
+#       restarts itself, but doesn't connect to WiFi within the first second of being on, so the
+#       gatt server thinks the connection failed. So, a sleep of 1 or 2 seconds might be enough
+#       to "catch up".
 # Run the gatt server application
 sudo python3 /home/pi/Documents/Projects/smart_mirror_gatt_server/main.py &
 
@@ -17,11 +22,11 @@ SUB='True'
 if [[ "$STR" == *"$SUB"* ]];
 then
 #   Connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --start-fullscreen https://smart-mirror-13618.web.app/\#/display-page/$DISPLAY_DEVICE_NAME
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --start-fullscreen https://smart-mirror-13618.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &
 
 else
 #   Not connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --start-fullscreen /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/connecttowifi.html
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --start-fullscreen /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/connecttowifi.html &
 fi
 
 # THIS FILE WILL HAVE TO BE RUN FROM THIS LOCATION:
