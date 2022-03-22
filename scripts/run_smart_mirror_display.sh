@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# TODO: May need to potentially sleep here so that the pi has a chance to "catch up" and realize
-#       that it is actually connected to WiFi. We sometimes experience the case where the pi
-#       restarts itself, but doesn't connect to WiFi within the first second of being on, so the
-#       gatt server thinks the connection failed. So, a sleep of 1 or 2 seconds might be enough
-#       to "catch up".
 # Run the gatt server application
 sudo python3 /home/pi/Documents/Projects/smart_mirror_gatt_server/main.py &
+
+# Begin checking if we are connected to the internet right away
+STR=`python3 /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/get_if_connected_to_internet.py`
+EVAL="$STR"
 
 ### Use unclutter to hide the mouse
 unclutter -idle 0.5 -root &
@@ -17,9 +16,8 @@ unclutter -idle 0.5 -root &
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' /home/pi/.config/chromium/Default/Preferences
 sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' /home/pi/.config/chromium/Default/Preferences
 
-STR=`python3 /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/get_if_connected_to_internet.py`
 SUB='True'
-if [[ "$STR" == *"$SUB"* ]];
+if [[ "$EVAL" == *"$SUB"* ]];
 then
 #   Connected to the internet
   DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --start-fullscreen https://smart-mirror-13618.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &

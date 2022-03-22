@@ -1,8 +1,6 @@
 from ble_gatt_server.advertisement import Advertisement
 from ble_gatt_server.service import Application
 
-import os
-
 # This function houses the code for declaring the base BLE Application GAT Server.
 
 # =================================================================================
