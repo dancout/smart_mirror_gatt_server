@@ -1,4 +1,5 @@
 import os
+import time
 
 # This file will house any utility functions used for the WiFi Configurator
 
@@ -81,11 +82,22 @@ def connected_to_internet():
     # a response
     ping = "ping -c2 google.com"
 
-    # Store output of the ping
-    output = os.popen(ping).read()
+    # Define the output string we are aiming to read
+    output = ""
 
     # Define a String that should only be present if connected to the internet
     ping_success = "--- google.com ping statistics ---"
+
+    # If the device is starting up, it may not immediately be connected to the
+    # WiFi, even if the credentials have been set. Loop through a few times to
+    # check adequately.
+    for x in range(0, 15):
+        # Store output of the ping
+        output = os.popen(ping).read()
+        if ping_success in output:
+            break
+        # Sleep momentarily before attempting again
+        time.sleep(0.75)
 
     # Check if the success String is present in the output
     if ping_success in output:
