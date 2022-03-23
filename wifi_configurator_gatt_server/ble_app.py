@@ -27,7 +27,6 @@ class SmartMirrorDisplayAdvertisement(Advertisement):
 
     def __init__(self, index):
         Advertisement.__init__(self, index, "peripheral")
-        # Get the DISPLAY_DEVICE_NAME from the environment variables
         # Declare this BLE Device name
         self.add_local_name(f"IMP - {{DISPLAY_DEVICE_NAME}}")
         self.include_tx_power = True
