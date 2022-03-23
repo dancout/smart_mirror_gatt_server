@@ -91,7 +91,7 @@ def connected_to_internet():
     # If the device is starting up, it may not immediately be connected to the
     # WiFi, even if the credentials have been set. Loop through a few times to
     # check adequately.
-    for x in range(0, 10):
+    for x in range(0, 15):
         # Store output of the ping
         output = os.popen(ping).read()
         if ping_success in output:
