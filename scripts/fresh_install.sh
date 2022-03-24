@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Take an input of what the device name will be and save as a variable
-
+# Prompt user to enter their device name
 echo "Enter the DISPLAY_DEVICE_NAME specified from the Firebase Document:"
 
+# Take an input of what the device name will be and save as a variable
 read DISPLAY_DEVICE_NAME
 
 # Enter Documents
