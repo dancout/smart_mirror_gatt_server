@@ -58,6 +58,10 @@ else
     echo "Successfully set up device name"
 fi
 
+# Update the splash screen
+sudo mv /home/pi/usr/share/plymouth/themes/pix/splash.png /home/pi/usr/share/plymouth/themes/pix/splash.png.bk
+sudo cp ../assets/splash.png /home/pi/usr/share/plymouth/themes/pix/
+
 # Message user that setup has completed
 echo "Setup complete!"
 echo "Sleeping for 5 seconds before rebooting"
