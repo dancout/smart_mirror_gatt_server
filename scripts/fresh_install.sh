@@ -34,6 +34,15 @@ fi
 # Enter smart_mirror_gatt_server/scripts
 cd smart_mirror_gatt_server/scripts
 
+# Update the splash screen
+sudo mv /home/pi/usr/share/plymouth/themes/pix/splash.png /home/pi/usr/share/plymouth/themes/pix/splash.png.bk
+sudo cp ../assets/splash.png /home/pi/usr/share/plymouth/themes/pix/
+echo "Updated splash screen"
+
+# Update Background image
+pcmanfm --set-wallpaper /home/pi/Documents/Projects/smart_mirror_gatt_server/assets/background.png
+echo "Updated background image"
+
 # run install dependencies
 . install_dependencies.sh 
 
@@ -57,13 +66,6 @@ then
 else
     echo "Successfully set up device name"
 fi
-
-# Update the splash screen
-sudo mv /home/pi/usr/share/plymouth/themes/pix/splash.png /home/pi/usr/share/plymouth/themes/pix/splash.png.bk
-sudo cp ../assets/splash.png /home/pi/usr/share/plymouth/themes/pix/
-
-# Update Background image
-pcmanfm --set-wallpaper /home/pi/Documents/Projects/smart_mirror_gatt_server/assets/background.png
 
 # Message user that setup has completed
 echo "Setup complete!"
