@@ -34,6 +34,15 @@ fi
 # Enter smart_mirror_gatt_server/scripts
 cd smart_mirror_gatt_server/scripts
 
+# Update the splash screen
+sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
+sudo cp ../assets/splash.png /usr/share/plymouth/themes/pix/
+echo "Updated splash screen"
+
+# Update Background image
+pcmanfm --set-wallpaper /home/pi/Documents/Projects/smart_mirror_gatt_server/assets/background.png
+echo "Updated background image"
+
 # run install dependencies
 . install_dependencies.sh 
 
