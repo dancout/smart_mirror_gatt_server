@@ -35,8 +35,8 @@ fi
 cd smart_mirror_gatt_server/scripts
 
 # Update the splash screen
-sudo mv /home/pi/usr/share/plymouth/themes/pix/splash.png /home/pi/usr/share/plymouth/themes/pix/splash.png.bk
-sudo cp ../assets/splash.png /home/pi/usr/share/plymouth/themes/pix/
+sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
+sudo cp ../assets/splash.png /usr/share/plymouth/themes/pix/
 echo "Updated splash screen"
 
 # Update Background image
