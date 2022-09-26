@@ -20,7 +20,7 @@ SUB='True'
 if [[ "$EVAL" == *"$SUB"* ]];
 then
 #   Connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --disable-gpu --kiosk https://smart-mirror-13618.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --disable-gpu --kiosk https://impiam.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &
 
 else
 #   Not connected to the internet
