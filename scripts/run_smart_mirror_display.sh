@@ -20,11 +20,11 @@ SUB='True'
 if [[ "$EVAL" == *"$SUB"* ]];
 then
 #   Connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --disable-gpu --kiosk https://impiam.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --disable-gpu --kiosk https://impiam.web.app/\#/display-page/$DISPLAY_DEVICE_NAME &
 
 else
 #   Not connected to the internet
-  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --incognito --disable-gpu --kiosk /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/connecttowifi.html &
+  DISPLAY=:0.0 chromium-browser --noerrdialogs --disable-infobars --disable-gpu --kiosk /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/connecttowifi.html &
 fi
 
 # THIS FILE WILL HAVE TO BE RUN FROM THIS LOCATION:
