@@ -38,6 +38,19 @@ else
     echo "Successfully installed unclutter"
 fi
 
+# install chromium-browser in case it is not already installed
+# NOTE: It is not installed by default on Buster images
+sudo apt-get install chromium-browser -y
+
+# Check for any errors
+if [[ $? > 0 ]]
+then
+    echo "Installing chromium-browser failed. Exiting"
+    return 1
+else
+    echo "Successfully installed chromium-browser"
+fi
+
 # Update the autostart file so that the display never goes to sleep
 # Make the autostart file editable
 sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
