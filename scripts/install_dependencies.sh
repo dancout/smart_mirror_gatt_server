@@ -75,4 +75,4 @@ sudo chmod 444 /etc/xdg/lxsession/LXDE-pi/autostart
 # This line was built from the following stackoverflow answers:
 # https://stackoverflow.com/a/9625233/16398621
 # https://raspberrypi.stackexchange.com/a/38934
-echo '(crontab -l 2>/dev/null; echo "*/0 7 * * * apt update && apt dist-upgrade -y") | crontab -'
+echo '(crontab -l 2>/dev/null; echo "*/0 7 * * * apt update && apt dist-upgrade -y && reboot") | crontab -'
