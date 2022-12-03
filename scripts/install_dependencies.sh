@@ -75,7 +75,7 @@ sudo chmod 444 /etc/xdg/lxsession/LXDE-pi/autostart
 # This line was built from the following stackoverflow answers:
 # https://stackoverflow.com/a/9625233/16398621
 # https://raspberrypi.stackexchange.com/a/38934
-(crontab -l 2>/dev/null; echo "37 11 * * * . /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/cron_update.sh") | crontab -
+(crontab -l 2>/dev/null; echo "30 5 * * * . /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/cron_update.sh") | crontab -
 
 # Check for any errors
 if [[ $? > 0 ]]
