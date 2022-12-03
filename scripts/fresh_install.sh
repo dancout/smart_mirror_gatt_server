@@ -37,17 +37,6 @@ fi
 # Enter smart_mirror_gatt_server/scripts
 cd smart_mirror_gatt_server/scripts
 
-# TODO: Remove this!
-git checkout using-buster-pi-image
-# Check for any errors
-if [[ $? > 0 ]]
-then
-    echo "switching git repo failed. Exiting."
-    return 1
-else
-    echo "Successfully switched repo"
-fi
-
 # Update the splash screen
 sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
 sudo cp ../assets/splash.png /usr/share/plymouth/themes/pix/
