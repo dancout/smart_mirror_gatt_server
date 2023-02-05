@@ -158,25 +158,25 @@ class wifi_cfg_sec_Descriptor(Descriptor):
 
 
 # =================================================================================
-# ==================================== WIFI CONFIGURATOR REBOOT CHARACTERISTIC ======
+# ==================================== WIFI CONFIGURATOR CUSTOM CHARACTERISTIC ======
 # =================================================================================
 
-class wifi_cfg_reboot_Descriptor(Descriptor):
+class wifi_cfg_custom_Descriptor(Descriptor):
     """
-    This class defines the Descriptor for the WiFi Configurator REBOOT.
+    This class defines the Descriptor for the WiFi Configurator CUSTOM.
     """
 
 # ==================================== INIT DECLARATIONS ==========================
 
     # Define the UUID of this descriptor
-    WIFI_CFG_REBOOT_DESCRIPTOR_UUID = "0005"
+    WIFI_CFG_CUSTOM_DESCRIPTOR_UUID = "0005"
 
     # Define the initial value of this descriptor
-    WIFI_CFG_REBOOT_DESCRIPTOR_VALUE = ""  # blank
+    WIFI_CFG_CUSTOM_DESCRIPTOR_VALUE = ""  # blank
 
     def __init__(self, characteristic):
         Descriptor.__init__(
-            self, self.WIFI_CFG_REBOOT_DESCRIPTOR_UUID,
+            self, self.WIFI_CFG_CUSTOM_DESCRIPTOR_UUID,
             ["read"],
             characteristic)
 
@@ -186,7 +186,7 @@ class wifi_cfg_reboot_Descriptor(Descriptor):
 
     def ReadValue(self, options):
         value = []
-        desc = self.WIFI_CFG_REBOOT_DESCRIPTOR_VALUE
+        desc = self.WIFI_CFG_CUSTOM_DESCRIPTOR_VALUE
 
         for c in desc:
             value.append(dbus.Byte(c.encode()))
