@@ -17,7 +17,7 @@ sudo chmod 444 /etc/environment
 sed -i "s/{{DISPLAY_DEVICE_NAME}}/$DISPLAY_DEVICE_NAME/g" /home/pi/Documents/Projects/smart_mirror_gatt_server/browser_files/connecttowifi.html
 
 # Update the DISPLAY_DEVICE_NAME in the ble_app.py file
-sed -i "s/{{DISPLAY_DEVICE_NAME}}/$DISPLAY_DEVICE_NAME/g" /home/pi/Documents/Projects/smart_mirror_gatt_server/wifi_configurator_gatt_server/ble_app.py
+sed -i "s/{{DISPLAY_DEVICE_NAME}}/$DISPLAY_DEVICE_NAME/g" /home/pi/Documents/Projects/smart_mirror_gatt_server/constants.py
 
 # Create the machine-info file if it does not already exist
 sudo touch /etc/machine-info
