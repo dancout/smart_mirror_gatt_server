@@ -1,9 +1,11 @@
 import dbus
 import os
 
+from subprocess import Popen
+
 from ble_gatt_server.service import Characteristic
 from wifi_configurator_gatt_server.descriptors import (
-    wifi_cfg_pswd_Descriptor, wifi_cfg_sec_Descriptor, wifi_cfg_ssid_Descriptor, wifi_cfg_state_Descriptor,)
+    wifi_cfg_pswd_Descriptor, wifi_cfg_custom_Descriptor, wifi_cfg_sec_Descriptor, wifi_cfg_ssid_Descriptor, wifi_cfg_state_Descriptor,)
 from wifi_configurator_gatt_server.utilities import update_wpa_file
 
 # ==================================== GLOBAL DECLARATIONS ========================
@@ -266,3 +268,41 @@ class wifi_cfg_sec(Characteristic):
         # Set the internal wifi_config_pswd with the decoded val
         self.service.set_wifi_config_sec(val)
 
+
+# =================================================================================
+# ==================================== WIFI CONFIGURATOR CUSTOM CHARACTERISTIC ====
+# =================================================================================
+
+class wifi_cfg_custom(Characteristic):
+    """
+    This class defines the WiFi Configurator CUSTOM Characteristic.
+    """
+
+ # ==================================== INIT DECLARATIONS ==========================
+
+    WIFI_CFG_CUSTOM_UUID = "00000005-b070-45da-ae51-9bd02af63ff1"
+
+    def __init__(self, service):
+
+        Characteristic.__init__(
+            self, self.WIFI_CFG_CUSTOM_UUID,
+            ["write"], service)
+        self.add_descriptor(wifi_cfg_custom_Descriptor(self))
+
+# =================================================================================
+# ==================================== HELPER FUNCTIONS ===========================
+# =================================================================================
+
+    
+    def WriteValue(self, value, options):
+        print('WiFI Configurator CUSTOM Value received: ', (str(value)), flush=True)
+
+        # decode the incoming value
+        val = "".join(map(chr, value))
+        print('Decoded CUSTOM Value received: ', val, flush=True)
+        Popen(f"echo Sleeping before running command;sleep 5;echo Running command;{val}", shell=True,
+                stdin=None, stdout=None, stderr=None,
+        )
+
+        # Set the internal wifi_config_custom with the decoded val
+        self.service.set_wifi_config_custom(val)

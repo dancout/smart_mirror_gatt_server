@@ -1,7 +1,7 @@
 import os
 from ble_gatt_server.service import Service
 from wifi_configurator_gatt_server.characteristics import (
-    wifi_cfg_pswd, wifi_cfg_sec, wifi_cfg_ssid, wifi_cfg_state,)
+    wifi_cfg_pswd, wifi_cfg_sec, wifi_cfg_ssid, wifi_cfg_state,wifi_cfg_custom)
 from wifi_configurator_gatt_server.utilities import update_state_file, get_state_from_file
 
 # This file houses the Service Declarations for the BLE GATT Server.
@@ -44,6 +44,7 @@ class WiFiConfiguratorService(Service):
         self.add_characteristic(wifi_cfg_ssid(self))
         self.add_characteristic(wifi_cfg_pswd(self))
         self.add_characteristic(wifi_cfg_sec(self))
+        self.add_characteristic(wifi_cfg_custom(self))
 
 
 # =================================================================================
@@ -91,3 +92,11 @@ class WiFiConfiguratorService(Service):
 
     def set_wifi_config_sec(self, sec):
         self.wifi_cfg_sec = sec
+
+# ==================================== CUSTOM =====================================
+
+    def get_wifi_config_custom(self):
+        return self.wifi_cfg_custom
+
+    def set_wifi_config_custom(self, custom):
+        self.wifi_cfg_custom = custom
