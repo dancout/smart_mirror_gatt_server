@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+constants/constants.py
+browser_files/connecttowifi.html

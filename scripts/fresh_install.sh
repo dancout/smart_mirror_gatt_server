@@ -34,8 +34,16 @@ else
     echo "Successfully cloned repo"
 fi
 
-# Enter smart_mirror_gatt_server/scripts
+# Enter smart_mirror_gatt_server
 cd smart_mirror_gatt_server/scripts
+
+# Copy the constants file for the machine name
+sudo cp ../constants/constants_copy.py ../constants/constants.py
+
+# Copy the connecttowifi file into the proper location
+sudo cp ../browser_files/connecttowifi_copy.html ../browser_files/connecttowifi.html
+
+
 
 # Update the splash screen
 sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
