@@ -43,7 +43,7 @@ mkdir constants
 # Enter constants
 cd constants
 
-# Create the constants file. Copying it does not work properly, and I cannot figure out why.
+# Create the constants file.
 echo "DISPLAY_DEVICE_NAME = \"{{DISPLAY_DEVICE_NAME}}\"" > "constants.py"
 
 # Enter scripts folder
