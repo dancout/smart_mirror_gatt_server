@@ -37,6 +37,9 @@ fi
 # Enter smart_mirror_gatt_server/scripts
 cd smart_mirror_gatt_server/scripts
 
+# Copy the connecttowifi file into the proper location
+sudo cp ../browser_files/connecttowifi_copy.html ../browser_files/connecttowifi.html
+
 # Update the splash screen
 sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
 sudo cp ../assets/splash.png /usr/share/plymouth/themes/pix/
