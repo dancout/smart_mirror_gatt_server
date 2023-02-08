@@ -35,15 +35,22 @@ else
 fi
 
 # Enter smart_mirror_gatt_server
-cd smart_mirror_gatt_server/scripts
+cd smart_mirror_gatt_server
 
-# Copy the constants file for the machine name
-sudo cp ../constants/constants_copy.py ../constants/constants.py
+# Create the constants folder
+mkdir constants
+
+# Enter constants
+cd constants
+
+# Create the constants file. Copying it does not work properly, and I cannot figure out why.
+echo "DISPLAY_DEVICE_NAME = {{DISPLAY_DEVICE_NAME}}" > "constants.py"
+
+# Enter scripts folder
+cd ../scripts
 
 # Copy the connecttowifi file into the proper location
 sudo cp ../browser_files/connecttowifi_copy.html ../browser_files/connecttowifi.html
-
-
 
 # Update the splash screen
 sudo mv /usr/share/plymouth/themes/pix/splash.png /usr/share/plymouth/themes/pix/splash.png.bk
