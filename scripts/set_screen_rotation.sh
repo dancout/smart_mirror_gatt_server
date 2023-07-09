@@ -30,4 +30,4 @@ else
      return 1
 fi
 
-echo "xrandr -o {{CONVERTED_ROTATION_VALUE}}" > "rotate_screen.sh"
+echo "xrandr -o \"{{CONVERTED_ROTATION_VALUE}}\"" > "rotate_screen.sh"
