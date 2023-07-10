@@ -9,9 +9,8 @@ read SCREEN_ROTATION
 # Capitalize this variable
 SCREEN_ROTATION=${SCREEN_ROTATION^^}
 
+# Set a base balue for the screen rotation
 CONVERTED_ROTATION_VALUE=0
-
-
 
 if [[  "$SCREEN_ROTATION" == "NORMAL" ]]
 then
@@ -26,8 +25,10 @@ elif [[ "$SCREEN_ROTATION" == "RIGHT" ]]
 then
      CONVERTED_ROTATION_VALUE=3  
 else
+    # No valid input was found
      echo "Please enter one of the following values: NORMAL, LEFT, RIGHT, UPSIDE_DOWN"
      return 1
 fi
 
-echo "xrandr -o \"$CONVERTED_ROTATION_VALUE\"" > "rotate_screen.sh"
+# Place the rotate value in the script
+echo "xrandr -o $CONVERTED_ROTATION_VALUE" > "rotate_screen.sh"

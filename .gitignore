@@ -130,3 +130,4 @@ dmypy.json
 
 constants/constants.py
 browser_files/connecttowifi.html
+scripts/rotate_screen.sh
