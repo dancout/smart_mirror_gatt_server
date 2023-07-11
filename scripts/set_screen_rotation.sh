@@ -35,7 +35,7 @@ then
 else
     # No valid input was found
      echo "Please enter one of the following values: NORMAL, LEFT, RIGHT, UPSIDE_DOWN"
-     return 1
+     exit 1
 fi
 
 # Place the rotate value in the script
