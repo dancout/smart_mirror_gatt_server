@@ -51,7 +51,9 @@ else
     echo "Successfully installed chromium-browser"
 fi
 
-# Update the autostart file so that the display never goes to sleep
+# Install the screen rotation script
+. set_screen_rotation.sh NORMAL
+
 # Make the autostart file editable
 sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
 
@@ -64,6 +66,9 @@ echo "# Set the current xsession not to blank out the screensaver and then disab
 @xset s off
 # disables the display power management system
 @xset -dpms
+
+# calls to rotate the display screen
+@bash /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
 
 # calls the script to open chrome to the correct address and run our gett server
 @bash /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/run_smart_mirror_display.sh" >> /etc/xdg/lxsession/LXDE-pi/autostart
