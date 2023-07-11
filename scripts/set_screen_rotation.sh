@@ -1,10 +1,18 @@
 #!/bin/bash
 
-# Prompt user to enter their desired screen rotation
-echo "Enter your desired screen rotation:"
 
-# Take in the rotation
-read SCREEN_ROTATION
+COMMAND_LINE_INPUT=$1
+
+if [[ "$COMMAND_LINE_INPUT" == "" ]]
+then
+    # Prompt user to enter their desired screen rotation
+    echo "Enter your desired screen rotation:"
+
+    # Take in the rotation
+    read SCREEN_ROTATION
+else
+    SCREEN_ROTATION="$COMMAND_LINE_INPUT"
+fi
 
 # Capitalize this variable
 SCREEN_ROTATION=${SCREEN_ROTATION^^}
