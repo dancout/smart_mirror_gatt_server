@@ -51,7 +51,9 @@ else
     echo "Successfully installed chromium-browser"
 fi
 
-# Update the autostart file so that the display never goes to sleep
+# Install the screen rotation script
+. set_screen_rotation.sh NORMAL
+
 # Make the autostart file editable
 sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
 
