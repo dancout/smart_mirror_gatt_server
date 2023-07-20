@@ -20,7 +20,7 @@ SCREEN_ROTATION=${SCREEN_ROTATION^^}
 # Set a base balue for the screen rotation
 CONVERTED_ROTATION_VALUE=0
 
-if [[  "$SCREEN_ROTATION" == "NORMAL" ]]
+if [[  "$SCREEN_ROTATION" == "DEFAULT" ]]
 then
      CONVERTED_ROTATION_VALUE=0
 elif [[ "$SCREEN_ROTATION" == "LEFT" ]]
@@ -39,4 +39,8 @@ else
 fi
 
 # Place the rotate value in the script
-echo "xrandr -o $CONVERTED_ROTATION_VALUE" > "rotate_screen.sh"
+echo "#!/bin/bash" > ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+# This sleep is absolutely necessary so that the command will be executed from the autostart file
+echo "sleep 2" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "xrandr -o $CONVERTED_ROTATION_VALUE" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
