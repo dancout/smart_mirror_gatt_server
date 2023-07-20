@@ -34,7 +34,7 @@ then
      CONVERTED_ROTATION_VALUE=3  
 else
     # No valid input was found
-     echo "Please enter one of the following values: NORMAL, LEFT, RIGHT, UPSIDE_DOWN"
+     echo "Please enter one of the following values: DEFAULT, LEFT, RIGHT, UPSIDE_DOWN"
      exit 1
 fi
 

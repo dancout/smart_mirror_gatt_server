@@ -52,7 +52,7 @@ else
 fi
 
 # Install the screen rotation script
-. set_screen_rotation.sh NORMAL
+. set_screen_rotation.sh DEFAULT
 
 # Make the autostart file editable
 sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
