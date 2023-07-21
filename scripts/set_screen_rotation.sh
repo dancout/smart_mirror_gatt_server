@@ -39,8 +39,8 @@ else
 fi
 
 # Place the rotate value in the script
-echo "#!/bin/bash" > ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
-echo "" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "#!/bin/bash" > /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "" >> /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
 # This sleep is absolutely necessary so that the command will be executed from the autostart file
-echo "sleep 2" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
-echo "xrandr -o $CONVERTED_ROTATION_VALUE" >> ~/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "sleep 2" >> /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
+echo "xrandr -o $CONVERTED_ROTATION_VALUE" >> /home/pi/Documents/Projects/smart_mirror_gatt_server/scripts/rotate_screen.sh
